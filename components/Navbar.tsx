@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
+  
+  { href: "/",    label: "Beranda" },
   { href: "/about",    label: "Tentang" },
   { href: "/services", label: "Layanan" },
   { href: "/workflow", label: "Alur Kerja" },
@@ -84,17 +86,16 @@ export default function Navbar() {
           margin-right: auto; padding: 8px 0;
         }
         .nb__logo-mark {
-          width: 38px; height: 38px; border-radius: 9px;
-          background: linear-gradient(145deg, #ffffff 0%, var(--navy-800) 100%);
-          border: 1px solid var(--navy-600);
-          display: flex; align-items: center; justify-content: center;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,.8);
-          transition: box-shadow .2s, transform .2s;
-        }
-        .nb__logo:hover .nb__logo-mark {
-          box-shadow: 0 4px 16px rgba(0,115,204,.18), inset 0 1px 0 rgba(255,255,255,.8);
-          transform: translateY(-1px);
-        }
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  object-fit: contain;
+  transition: transform .2s, opacity .2s;
+}
+.nb__logo:hover .nb__logo-mark {
+  transform: translateY(-1px);
+  opacity: 0.85;
+}
         .nb__logo-text  { display: flex; flex-direction: column; line-height: 1; }
         .nb__logo-name  {
           font-family: var(--font-display); font-size: 17px;
@@ -255,22 +256,19 @@ export default function Navbar() {
         <div className="nb__inner container">
 
           {/* Logo */}
-          <Link href="/" className="nb__logo" onClick={closeMenu}>
-            <div className="nb__logo-mark">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                <rect x="2"  y="14" width="4" height="6"  rx="1" fill="var(--blue-400)" opacity=".5"/>
-                <rect x="8"  y="10" width="4" height="10" rx="1" fill="var(--blue-400)" opacity=".75"/>
-                <rect x="14" y="5"  width="4" height="15" rx="1" fill="var(--blue-300)"/>
-                <path d="M4 16 L16 6" stroke="var(--electric)" strokeWidth="1.4"
-                  strokeLinecap="round" strokeDasharray="2 2"/>
-                <circle cx="16" cy="6" r="1.8" fill="var(--electric)"/>
-              </svg>
-            </div>
-            <div className="nb__logo-text">
-              <span className="nb__logo-name">AXIOMA</span>
-              <span className="nb__logo-sub">Data Solutions</span>
-            </div>
-          </Link>
+<Link href="/" className="nb__logo" onClick={closeMenu}>
+  <img
+    src="/logoAxioma1.png"
+    alt="Axioma Logo"
+    width={38}
+    height={38}
+    className="nb__logo-mark"
+  />
+  <div className="nb__logo-text">
+    <span className="nb__logo-name">AXIOMA</span>
+    <span className="nb__logo-sub">Data Solutions</span>
+  </div>
+</Link>
 
           {/* Desktop nav */}
           <nav ref={navRef} className="nb__nav" onMouseLeave={handleNavLeave}>
