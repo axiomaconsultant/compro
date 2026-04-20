@@ -6,61 +6,309 @@ import Link from "next/link";
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const services = [
-  { id: 1,  name: "Analisis Deskriptif (Multi Visual)",                            category: "Deskriptif",  desc: "Menyajikan ringkasan data menggunakan berbagai visualisasi: histogram, pie chart, boxplot, dan tabel frekuensi. Cocok sebagai bab pembuka analisis penelitian kuantitatif.", tools: ["SPSS", "Excel", "R"] },
-  { id: 2,  name: "Regresi Linear (Sederhana, Berganda, Logistik)",                category: "Regresi",     desc: "Menganalisis hubungan antara satu atau lebih variabel independen terhadap variabel dependen. Mencakup interpretasi koefisien, R², dan signifikansi model.", tools: ["SPSS", "R", "Python"] },
-  { id: 3,  name: "Uji Asumsi Klasik (3–5 Variabel)",                              category: "Regresi",     desc: "Pengujian normalitas, multikolinearitas, heteroskedastisitas, dan autokorelasi untuk memastikan model regresi memenuhi syarat BLUE.", tools: ["SPSS", "R"] },
-  { id: 4,  name: "Uji Asumsi Klasik (6–7 Variabel)",                              category: "Regresi",     desc: "Sama dengan paket 3–5 variabel namun mencakup lebih banyak prediktor. Setiap uji asumsi dilaporkan lengkap dengan interpretasi dan solusi bila asumsi dilanggar.", tools: ["SPSS", "R"] },
-  { id: 5,  name: "Uji Validitas & Reliabilitas (3–5 Variabel)",                   category: "Regresi",     desc: "Pengujian corrected item-total correlation untuk validitas dan Cronbach's Alpha untuk reliabilitas. Disertai rekomendasi item yang perlu dihapus atau dipertahankan.", tools: ["SPSS"] },
-  { id: 6,  name: "Uji Validitas & Reliabilitas (6–7 Variabel)",                   category: "Regresi",     desc: "Paket lengkap validitas dan reliabilitas untuk instrumen dengan lebih banyak konstruk. Output mencakup tabel summary per variabel beserta interpretasinya.", tools: ["SPSS"] },
-  { id: 7,  name: "Regresi Berganda dengan Moderasi",                              category: "Regresi",     desc: "Analisis pengaruh variabel moderator menggunakan moderated regression analysis (MRA). Dilengkapi simple slope analysis untuk interpretasi interaksi.", tools: ["SPSS", "R"] },
-  { id: 8,  name: "Regresi Berganda dengan Moderasi & Faktor Kontrol",             category: "Regresi",     desc: "Perluasan analisis moderasi dengan memasukkan covariat seperti usia, pendidikan, atau pengalaman agar estimasi lebih akurat.", tools: ["SPSS", "R"] },
-  { id: 9,  name: "SEM PLS 1st & 2nd Order (3–5 Var): Inner, Outer, Blindfold",   category: "SEM-PLS",     desc: "Pemodelan persamaan struktural berbasis partial least square untuk model reflektif/formatif. Meliputi pengujian outer model, inner model, dan Q² blindfolding.", tools: ["SmartPLS"] },
-  { id: 10, name: "SEM PLS 1st & 2nd Order (6–8 Var): Inner, Outer, Blindfold",   category: "SEM-PLS",     desc: "Versi lebih kompleks dengan lebih banyak konstruk laten. Cocok untuk penelitian dengan model teoritis yang kaya variabel mediasi dan moderasi.", tools: ["SmartPLS"] },
-  { id: 11, name: "SEM PLS 1st & 2nd Order Moderasi Tunggal (3–5 Var)",           category: "SEM-PLS",     desc: "Pengujian efek moderasi dalam kerangka SEM-PLS menggunakan interaksi produk atau orthogonalisasi. Dilengkapi analisis slope untuk interpretasi interaksi.", tools: ["SmartPLS"] },
-  { id: 12, name: "SEM PLS Multi Moderasi dan Mediasi (6–8 Var)",                  category: "SEM-PLS",     desc: "Paket paling lengkap untuk model SEM-PLS kompleks. Ideal untuk disertasi dan jurnal internasional dengan beberapa variabel moderator dan mediator.", tools: ["SmartPLS"] },
-  { id: 13, name: "SEM CB-AMOS 1st & 2nd Order (3–5 Variabel)",                   category: "SEM-CB",      desc: "Structural equation modeling berbasis covariance menggunakan AMOS. Meliputi CFA, uji kecocokan model (GOF), dan path diagram lengkap.", tools: ["AMOS"] },
-  { id: 14, name: "SEM CB-AMOS 1st & 2nd Order (6–8 Variabel)",                   category: "SEM-CB",      desc: "Paket CB-SEM untuk model yang lebih kompleks. Mencakup analisis modification index dan model trimming.", tools: ["AMOS"] },
-  { id: 15, name: "SEM CB-AMOS 1st & 2nd Order, Moderasi (3–5 Var)",              category: "SEM-CB",      desc: "Pengujian moderasi dalam CB-SEM menggunakan multi-group analysis (MGA) atau produk interaksi laten. Dilengkapi chi-square difference test.", tools: ["AMOS"] },
-  { id: 16, name: "SEM CB-AMOS 1st & 2nd Order, Multi Moderasi (6–8 Var)",        category: "SEM-CB",      desc: "Model CB-SEM dengan beberapa kelompok atau kondisi moderasi. Cocok untuk penelitian komparatif antar kelompok.", tools: ["AMOS"] },
-  { id: 17, name: "Analisis SEM + Modifikasi Model",                               category: "SEM-CB",      desc: "Layanan iteratif yang mencakup estimasi awal, diagnosis, modifikasi berdasarkan MI dan teori, hingga model final yang fit. Direkomendasikan untuk revisi skripsi/tesis.", tools: ["AMOS", "SmartPLS"] },
-  { id: 18, name: "Paket TA Regresi: Deskriptif, Asumsi, Regresi Berganda",        category: "Paket TA",    desc: "Paket all-in-one untuk tugas akhir berbasis regresi. Mencakup statistik deskriptif, uji asumsi klasik, regresi berganda, dan interpretasi hasil siap tulis.", tools: ["SPSS", "R"] },
-  { id: 19, name: "Paket TA VB-SEM/SmartPLS: Deskriptif, Inner, Outer, Blindfold",category: "Paket TA",    desc: "Paket lengkap tugas akhir berbasis SmartPLS. Dari deskriptif hingga pelaporan model struktural. Output dalam format tabel dan gambar siap tempel di bab hasil.", tools: ["SmartPLS", "SPSS"] },
-  { id: 20, name: "Paket TA CB-SEM/AMOS: Deskriptif, Inner, Outer, Smoothing",    category: "Paket TA",    desc: "Paket tugas akhir berbasis AMOS yang meliputi seluruh tahapan analisis. Termasuk pembahasan fit index, AVE, CR, dan path coefficient siap ditulis.", tools: ["AMOS", "SPSS"] },
-  { id: 21, name: "EFA-CFA",                                                       category: "Deskriptif",  desc: "Exploratory Factor Analysis untuk menemukan struktur laten, dilanjutkan Confirmatory Factor Analysis untuk menguji kesesuaian model pengukuran.", tools: ["SPSS", "R", "AMOS"] },
-  { id: 22, name: "Analisis Data Panel & Time Series (Stata / Python)",             category: "Lanjutan",    desc: "Regresi data panel (fixed/random effect), uji Hausman, serta analisis deret waktu (ARIMA, VAR, VECM). Cocok untuk penelitian ekonomi dan keuangan.", tools: ["Stata", "Python", "EViews"] },
-  { id: 23, name: "Analisis Multivariat Lanjutan (MANOVA, Cluster, Diskriminan)",  category: "Lanjutan",    desc: "Analisis lanjutan untuk data dengan banyak variabel dependen, pengelompokan objek, dan klasifikasi. Meliputi MANOVA, K-means clustering, dan analisis diskriminan.", tools: ["SPSS", "R"] },
-  { id: 24, name: "Analisis Kualitatif dan Coding Tematik (NVivo / ATLAS.ti)",     category: "Kualitatif",  desc: "Pengkodean dan analisis tematik data wawancara, observasi, atau dokumen. Menghasilkan tema, kategori, dan mind map menggunakan software riset kualitatif.", tools: ["NVivo", "ATLAS.ti"] },
-  { id: 25, name: "Visualisasi dan Dasbor Data (Tableau / Power BI)",              category: "Visualisasi", desc: "Pembuatan dashboard interaktif dan infografis data untuk presentasi, laporan manajerial, atau publikasi. Data dapat berasal dari Excel, database, atau API.", tools: ["Tableau", "Power BI"] },
-  { id: 26, name: "Uji SEM LISREL dan Mplus (CFA, Path Analysis, SEM Lanjutan)",  category: "SEM-CB",      desc: "Analisis CFA dan SEM menggunakan LISREL atau Mplus, termasuk model multilevel, bifactor, dan growth curve. Cocok untuk penelitian psikologi dan pendidikan tingkat lanjut.", tools: ["LISREL", "Mplus"] },
-  { id: 27, name: "Pengendalian Kualitas dan Kapabilitas Proses (Minitab)",        category: "Kualitas",    desc: "Analisis capability process (Cp, Cpk), control chart (I-MR, Xbar-R), dan Gage R&R. Digunakan dalam penelitian teknik industri dan manajemen operasi.", tools: ["Minitab"] },
-  { id: 28, name: "Analisis Statistik Lanjutan dan Eksploratori (Statistica)",     category: "Lanjutan",    desc: "Eksplorasi mendalam menggunakan Statistica untuk ANOVA multifaktorial, neural network dasar, dan analisis eksploratori seperti nonparametric tests.", tools: ["Statistica"] },
-  { id: 29, name: "Analisis Ekonometrika dan Deret Waktu (EViews)",                category: "Lanjutan",    desc: "Pemodelan ekonometrika seperti OLS, GLS, ARCH/GARCH, kointegrasi, dan uji kausalitas Granger. Standar baku untuk penelitian ekonomi makro dan keuangan.", tools: ["EViews"] },
-  { id: 30, name: "Analisis Data Skala Besar dan Pemodelan Prediktif (SAS)",       category: "Lanjutan",    desc: "Pengolahan dataset besar menggunakan SAS, termasuk regresi logistik, decision tree, dan pemodelan prediktif. Cocok untuk riset perusahaan dan lembaga skala besar.", tools: ["SAS"] },
+  {
+    id: 1,
+    name: "Analisis Deskriptif (Multi Visual)",
+    category: "Deskriptif",
+    desc: "Menyajikan ringkasan data menggunakan berbagai visualisasi: histogram, pie chart, boxplot, dan tabel frekuensi. Cocok sebagai bab pembuka analisis penelitian kuantitatif.",
+    tools: ["SPSS", "Excel", "R"],
+  },
+  {
+    id: 2,
+    name: "Regresi Linear (Sederhana, Berganda, Logistik)",
+    category: "Regresi",
+    desc: "Menganalisis hubungan antara satu atau lebih variabel independen terhadap variabel dependen. Mencakup interpretasi koefisien, R², dan signifikansi model.",
+    tools: ["SPSS", "R", "Python"],
+  },
+  {
+    id: 3,
+    name: "Uji Asumsi Klasik (3–5 Variabel)",
+    category: "Regresi",
+    desc: "Pengujian normalitas, multikolinearitas, heteroskedastisitas, dan autokorelasi untuk memastikan model regresi memenuhi syarat BLUE.",
+    tools: ["SPSS", "R"],
+  },
+  {
+    id: 4,
+    name: "Uji Asumsi Klasik (6–7 Variabel)",
+    category: "Regresi",
+    desc: "Sama dengan paket 3–5 variabel namun mencakup lebih banyak prediktor. Setiap uji asumsi dilaporkan lengkap dengan interpretasi dan solusi bila asumsi dilanggar.",
+    tools: ["SPSS", "R"],
+  },
+  {
+    id: 5,
+    name: "Uji Validitas & Reliabilitas (3–5 Variabel)",
+    category: "Regresi",
+    desc: "Pengujian corrected item-total correlation untuk validitas dan Cronbach's Alpha untuk reliabilitas. Disertai rekomendasi item yang perlu dihapus atau dipertahankan.",
+    tools: ["SPSS"],
+  },
+  {
+    id: 6,
+    name: "Uji Validitas & Reliabilitas (6–7 Variabel)",
+    category: "Regresi",
+    desc: "Paket lengkap validitas dan reliabilitas untuk instrumen dengan lebih banyak konstruk. Output mencakup tabel summary per variabel beserta interpretasinya.",
+    tools: ["SPSS"],
+  },
+  {
+    id: 7,
+    name: "Regresi Berganda dengan Moderasi",
+    category: "Regresi",
+    desc: "Analisis pengaruh variabel moderator menggunakan moderated regression analysis (MRA). Dilengkapi simple slope analysis untuk interpretasi interaksi.",
+    tools: ["SPSS", "R"],
+  },
+  {
+    id: 8,
+    name: "Regresi Berganda dengan Moderasi & Faktor Kontrol",
+    category: "Regresi",
+    desc: "Perluasan analisis moderasi dengan memasukkan covariat seperti usia, pendidikan, atau pengalaman agar estimasi lebih akurat.",
+    tools: ["SPSS", "R"],
+  },
+  {
+    id: 9,
+    name: "SEM PLS 1st & 2nd Order (3–5 Var): Inner, Outer, Blindfold",
+    category: "SEM-PLS",
+    desc: "Pemodelan persamaan struktural berbasis partial least square untuk model reflektif/formatif. Meliputi pengujian outer model, inner model, dan Q² blindfolding.",
+    tools: ["SmartPLS"],
+  },
+  {
+    id: 10,
+    name: "SEM PLS 1st & 2nd Order (6–8 Var): Inner, Outer, Blindfold",
+    category: "SEM-PLS",
+    desc: "Versi lebih kompleks dengan lebih banyak konstruk laten. Cocok untuk penelitian dengan model teoritis yang kaya variabel mediasi dan moderasi.",
+    tools: ["SmartPLS"],
+  },
+  {
+    id: 11,
+    name: "SEM PLS 1st & 2nd Order Moderasi Tunggal (3–5 Var)",
+    category: "SEM-PLS",
+    desc: "Pengujian efek moderasi dalam kerangka SEM-PLS menggunakan interaksi produk atau orthogonalisasi. Dilengkapi analisis slope untuk interpretasi interaksi.",
+    tools: ["SmartPLS"],
+  },
+  {
+    id: 12,
+    name: "SEM PLS Multi Moderasi dan Mediasi (6–8 Var)",
+    category: "SEM-PLS",
+    desc: "Paket paling lengkap untuk model SEM-PLS kompleks. Ideal untuk disertasi dan jurnal internasional dengan beberapa variabel moderator dan mediator.",
+    tools: ["SmartPLS"],
+  },
+  {
+    id: 13,
+    name: "SEM CB-AMOS 1st & 2nd Order (3–5 Variabel)",
+    category: "SEM-CB",
+    desc: "Structural equation modeling berbasis covariance menggunakan AMOS. Meliputi CFA, uji kecocokan model (GOF), dan path diagram lengkap.",
+    tools: ["AMOS"],
+  },
+  {
+    id: 14,
+    name: "SEM CB-AMOS 1st & 2nd Order (6–8 Variabel)",
+    category: "SEM-CB",
+    desc: "Paket CB-SEM untuk model yang lebih kompleks. Mencakup analisis modification index dan model trimming.",
+    tools: ["AMOS"],
+  },
+  {
+    id: 15,
+    name: "SEM CB-AMOS 1st & 2nd Order, Moderasi (3–5 Var)",
+    category: "SEM-CB",
+    desc: "Pengujian moderasi dalam CB-SEM menggunakan multi-group analysis (MGA) atau produk interaksi laten. Dilengkapi chi-square difference test.",
+    tools: ["AMOS"],
+  },
+  {
+    id: 16,
+    name: "SEM CB-AMOS 1st & 2nd Order, Multi Moderasi (6–8 Var)",
+    category: "SEM-CB",
+    desc: "Model CB-SEM dengan beberapa kelompok atau kondisi moderasi. Cocok untuk penelitian komparatif antar kelompok.",
+    tools: ["AMOS"],
+  },
+  {
+    id: 17,
+    name: "Analisis SEM + Modifikasi Model",
+    category: "SEM-CB",
+    desc: "Layanan iteratif yang mencakup estimasi awal, diagnosis, modifikasi berdasarkan MI dan teori, hingga model final yang fit. Direkomendasikan untuk revisi skripsi/tesis.",
+    tools: ["AMOS", "SmartPLS"],
+  },
+  {
+    id: 18,
+    name: "Paket TA Regresi: Deskriptif, Asumsi, Regresi Berganda",
+    category: "Paket TA",
+    desc: "Paket all-in-one untuk tugas akhir berbasis regresi. Mencakup statistik deskriptif, uji asumsi klasik, regresi berganda, dan interpretasi hasil siap tulis.",
+    tools: ["SPSS", "R"],
+  },
+  {
+    id: 19,
+    name: "Paket TA VB-SEM/SmartPLS: Deskriptif, Inner, Outer, Blindfold",
+    category: "Paket TA",
+    desc: "Paket lengkap tugas akhir berbasis SmartPLS. Dari deskriptif hingga pelaporan model struktural. Output dalam format tabel dan gambar siap tempel di bab hasil.",
+    tools: ["SmartPLS", "SPSS"],
+  },
+  {
+    id: 20,
+    name: "Paket TA CB-SEM/AMOS: Deskriptif, Inner, Outer, Smoothing",
+    category: "Paket TA",
+    desc: "Paket tugas akhir berbasis AMOS yang meliputi seluruh tahapan analisis. Termasuk pembahasan fit index, AVE, CR, dan path coefficient siap ditulis.",
+    tools: ["AMOS", "SPSS"],
+  },
+  {
+    id: 21,
+    name: "EFA-CFA",
+    category: "Deskriptif",
+    desc: "Exploratory Factor Analysis untuk menemukan struktur laten, dilanjutkan Confirmatory Factor Analysis untuk menguji kesesuaian model pengukuran.",
+    tools: ["SPSS", "R", "AMOS"],
+  },
+  {
+    id: 22,
+    name: "Analisis Data Panel & Time Series (Stata / Python)",
+    category: "Lanjutan",
+    desc: "Regresi data panel (fixed/random effect), uji Hausman, serta analisis deret waktu (ARIMA, VAR, VECM). Cocok untuk penelitian ekonomi dan keuangan.",
+    tools: ["Stata", "Python", "EViews"],
+  },
+  {
+    id: 23,
+    name: "Analisis Multivariat Lanjutan (MANOVA, Cluster, Diskriminan)",
+    category: "Lanjutan",
+    desc: "Analisis lanjutan untuk data dengan banyak variabel dependen, pengelompokan objek, dan klasifikasi. Meliputi MANOVA, K-means clustering, dan analisis diskriminan.",
+    tools: ["SPSS", "R"],
+  },
+  {
+    id: 24,
+    name: "Analisis Kualitatif dan Coding Tematik (NVivo / ATLAS.ti)",
+    category: "Kualitatif",
+    desc: "Pengkodean dan analisis tematik data wawancara, observasi, atau dokumen. Menghasilkan tema, kategori, dan mind map menggunakan software riset kualitatif.",
+    tools: ["NVivo", "ATLAS.ti"],
+  },
+  {
+    id: 25,
+    name: "Visualisasi dan Dasbor Data (Tableau / Power BI)",
+    category: "Visualisasi",
+    desc: "Pembuatan dashboard interaktif dan infografis data untuk presentasi, laporan manajerial, atau publikasi. Data dapat berasal dari Excel, database, atau API.",
+    tools: ["Tableau", "Power BI"],
+  },
+  {
+    id: 26,
+    name: "Uji SEM LISREL dan Mplus (CFA, Path Analysis, SEM Lanjutan)",
+    category: "SEM-CB",
+    desc: "Analisis CFA dan SEM menggunakan LISREL atau Mplus, termasuk model multilevel, bifactor, dan growth curve. Cocok untuk penelitian psikologi dan pendidikan tingkat lanjut.",
+    tools: ["LISREL", "Mplus"],
+  },
+  {
+    id: 27,
+    name: "Pengendalian Kualitas dan Kapabilitas Proses (Minitab)",
+    category: "Kualitas",
+    desc: "Analisis capability process (Cp, Cpk), control chart (I-MR, Xbar-R), dan Gage R&R. Digunakan dalam penelitian teknik industri dan manajemen operasi.",
+    tools: ["Minitab"],
+  },
+  {
+    id: 28,
+    name: "Analisis Statistik Lanjutan dan Eksploratori (Statistica)",
+    category: "Lanjutan",
+    desc: "Eksplorasi mendalam menggunakan Statistica untuk ANOVA multifaktorial, neural network dasar, dan analisis eksploratori seperti nonparametric tests.",
+    tools: ["Statistica"],
+  },
+  {
+    id: 29,
+    name: "Analisis Ekonometrika dan Deret Waktu (EViews)",
+    category: "Lanjutan",
+    desc: "Pemodelan ekonometrika seperti OLS, GLS, ARCH/GARCH, kointegrasi, dan uji kausalitas Granger. Standar baku untuk penelitian ekonomi makro dan keuangan.",
+    tools: ["EViews"],
+  },
+  {
+    id: 30,
+    name: "Analisis Data Skala Besar dan Pemodelan Prediktif (SAS)",
+    category: "Lanjutan",
+    desc: "Pengolahan dataset besar menggunakan SAS, termasuk regresi logistik, decision tree, dan pemodelan prediktif. Cocok untuk riset perusahaan dan lembaga skala besar.",
+    tools: ["SAS"],
+  },
 ];
 
 // ─── Category config: warna selaras design system Axioma ──────────────────────
 
-const catConfig: Record<string, { bg: string; border: string; tx: string; dot: string }> = {
-  Deskriptif:  { bg: "rgba(0,115,204,0.07)",   border: "rgba(0,115,204,0.20)",   tx: "var(--electric-dark)", dot: "var(--electric)" },
-  Regresi:     { bg: "rgba(20,81,163,0.07)",   border: "rgba(20,81,163,0.20)",   tx: "var(--blue-700)",      dot: "var(--blue-600)" },
-  "SEM-PLS":   { bg: "rgba(160,120,32,0.08)",  border: "rgba(160,120,32,0.22)",  tx: "var(--gold-dark)",     dot: "var(--gold)" },
-  "SEM-CB":    { bg: "rgba(26,107,200,0.07)",  border: "rgba(26,107,200,0.20)",  tx: "var(--blue-600)",      dot: "var(--blue-500)" },
-  "Paket TA":  { bg: "rgba(160,120,32,0.10)",  border: "rgba(160,120,32,0.26)",  tx: "var(--gold)",          dot: "var(--gold-light)" },
-  Lanjutan:    { bg: "rgba(83,74,183,0.07)",   border: "rgba(83,74,183,0.20)",   tx: "#3C3489",              dot: "#534AB7" },
-  Kualitatif:  { bg: "rgba(153,53,86,0.07)",   border: "rgba(153,53,86,0.20)",   tx: "#72243E",              dot: "#993556" },
-  Visualisasi: { bg: "rgba(15,110,86,0.07)",   border: "rgba(15,110,86,0.20)",   tx: "#0B6B50",              dot: "#1D9E75" },
-  Kualitas:    { bg: "rgba(59,109,17,0.07)",   border: "rgba(59,109,17,0.20)",   tx: "#27500A",              dot: "#3B6D11" },
+const catConfig: Record<
+  string,
+  { bg: string; border: string; tx: string; dot: string }
+> = {
+  Deskriptif: {
+    bg: "rgba(0,115,204,0.07)",
+    border: "rgba(0,115,204,0.20)",
+    tx: "var(--electric-dark)",
+    dot: "var(--electric)",
+  },
+  Regresi: {
+    bg: "rgba(20,81,163,0.07)",
+    border: "rgba(20,81,163,0.20)",
+    tx: "var(--blue-700)",
+    dot: "var(--blue-600)",
+  },
+  "SEM-PLS": {
+    bg: "rgba(160,120,32,0.08)",
+    border: "rgba(160,120,32,0.22)",
+    tx: "var(--gold-dark)",
+    dot: "var(--gold)",
+  },
+  "SEM-CB": {
+    bg: "rgba(26,107,200,0.07)",
+    border: "rgba(26,107,200,0.20)",
+    tx: "var(--blue-600)",
+    dot: "var(--blue-500)",
+  },
+  "Paket TA": {
+    bg: "rgba(160,120,32,0.10)",
+    border: "rgba(160,120,32,0.26)",
+    tx: "var(--gold)",
+    dot: "var(--gold-light)",
+  },
+  Lanjutan: {
+    bg: "rgba(83,74,183,0.07)",
+    border: "rgba(83,74,183,0.20)",
+    tx: "#3C3489",
+    dot: "#534AB7",
+  },
+  Kualitatif: {
+    bg: "rgba(153,53,86,0.07)",
+    border: "rgba(153,53,86,0.20)",
+    tx: "#72243E",
+    dot: "#993556",
+  },
+  Visualisasi: {
+    bg: "rgba(15,110,86,0.07)",
+    border: "rgba(15,110,86,0.20)",
+    tx: "#0B6B50",
+    dot: "#1D9E75",
+  },
+  Kualitas: {
+    bg: "rgba(59,109,17,0.07)",
+    border: "rgba(59,109,17,0.20)",
+    tx: "#27500A",
+    dot: "#3B6D11",
+  },
 };
 
-const fallbackCat = { bg: "rgba(0,115,204,0.07)", border: "rgba(0,115,204,0.20)", tx: "var(--electric-dark)", dot: "var(--electric)" };
+const fallbackCat = {
+  bg: "rgba(0,115,204,0.07)",
+  border: "rgba(0,115,204,0.20)",
+  tx: "var(--electric-dark)",
+  dot: "var(--electric)",
+};
 
-const allCategories = ["Semua", ...Array.from(new Set(services.map((s) => s.category)))];
+const allCategories = [
+  "Semua",
+  ...Array.from(new Set(services.map((s) => s.category))),
+];
 
 const stats = [
-  { num: "30",   label: "Layanan Tersedia",  icon: "M4 6h16M4 10h16M4 14h10" },
-  { num: "9",    label: "Kategori Analisis", icon: "M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" },
-  { num: "15+",  label: "Software Didukung", icon: "M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" },
-  { num: "100%", label: "Konsultasi Gratis", icon: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" },
+  { num: "30", label: "Layanan Tersedia", icon: "M4 6h16M4 10h16M4 14h10" },
+  {
+    num: "9",
+    label: "Kategori Analisis",
+    icon: "M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z",
+  },
+  {
+    num: "15+",
+    label: "Software Didukung",
+    icon: "M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18",
+  },
+  {
+    num: "100%",
+    label: "Konsultasi Gratis",
+    icon: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z",
+  },
 ];
 
 // ─── Animated counter ─────────────────────────────────────────────────────────
@@ -70,25 +318,36 @@ function useCountUp(target: number, duration = 1200) {
   const ref = useRef<HTMLElement>(null);
   const started = useRef(false);
   useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && !started.current) {
-        started.current = true;
-        let frame = 0;
-        const total = Math.ceil(duration / 16);
-        const t = setInterval(() => {
-          frame++;
-          setVal(Math.round((1 - Math.pow(1 - frame / total, 3)) * target));
-          if (frame >= total) clearInterval(t);
-        }, 16);
-      }
-    }, { threshold: 0.5 });
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting && !started.current) {
+          started.current = true;
+          let frame = 0;
+          const total = Math.ceil(duration / 16);
+          const t = setInterval(() => {
+            frame++;
+            setVal(Math.round((1 - Math.pow(1 - frame / total, 3)) * target));
+            if (frame >= total) clearInterval(t);
+          }, 16);
+        }
+      },
+      { threshold: 0.5 },
+    );
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
   }, [target, duration]);
   return { val, ref };
 }
 
-function StatCard({ num, label, icon }: { num: string; label: string; icon: string }) {
+function StatCard({
+  num,
+  label,
+  icon,
+}: {
+  num: string;
+  label: string;
+  icon: string;
+}) {
   const isNum = /^\d+/.test(num);
   const numVal = isNum ? parseInt(num) : 0;
   const suffix = num.replace(/^\d+/, "");
@@ -98,10 +357,19 @@ function StatCard({ num, label, icon }: { num: string; label: string; icon: stri
     <div className="cl-stat">
       <div className="cl-stat__icon">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <path d={icon} stroke="var(--electric)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+          <path
+            d={icon}
+            stroke="var(--electric)"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       </div>
-      <div className="cl-stat__val" ref={ref as React.RefObject<HTMLDivElement>}>
+      <div
+        className="cl-stat__val"
+        ref={ref as React.RefObject<HTMLDivElement>}
+      >
         {isNum ? `${val}${suffix}` : num}
       </div>
       <div className="cl-stat__label">{label}</div>
@@ -112,9 +380,11 @@ function StatCard({ num, label, icon }: { num: string; label: string; icon: stri
 // ─── Accordion item ───────────────────────────────────────────────────────────
 
 function ServiceRow({
-  svc, isOpen, onToggle,
+  svc,
+  isOpen,
+  onToggle,
 }: {
-  svc: typeof services[0];
+  svc: (typeof services)[0];
   isOpen: boolean;
   onToggle: () => void;
 }) {
@@ -129,15 +399,10 @@ function ServiceRow({
         aria-expanded={isOpen}
       >
         {/* Number */}
-        <span className="cl-row__num">
-          {String(svc.id).padStart(2, "0")}
-        </span>
+        <span className="cl-row__num">{String(svc.id).padStart(2, "0")}</span>
 
         {/* Dot indicator */}
-        <span
-          className="cl-row__dot"
-          style={{ background: color.dot }}
-        />
+        <span className="cl-row__dot" style={{ background: color.dot }} />
 
         {/* Name */}
         <span className="cl-row__name">{svc.name}</span>
@@ -145,7 +410,11 @@ function ServiceRow({
         {/* Badge */}
         <span
           className="cl-row__badge"
-          style={{ background: color.bg, borderColor: color.border, color: color.tx }}
+          style={{
+            background: color.bg,
+            borderColor: color.border,
+            color: color.tx,
+          }}
         >
           {svc.category}
         </span>
@@ -153,8 +422,13 @@ function ServiceRow({
         {/* Chevron */}
         <span className="cl-row__chev" aria-hidden="true">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.5"
-              strokeLinecap="round" strokeLinejoin="round"/>
+            <path
+              d="M3 5l4 4 4-4"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </span>
       </button>
@@ -167,14 +441,21 @@ function ServiceRow({
           <div className="cl-row__footer">
             <div className="cl-row__tools">
               {svc.tools.map((t) => (
-                <span key={t} className="cl-row__tool">{t}</span>
+                <span key={t} className="cl-row__tool">
+                  {t}
+                </span>
               ))}
             </div>
             <Link href="/contact" className="cl-row__cta">
               Tanya layanan ini
               <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-                <path d="M2.5 6.5h8M6.5 2.5l4 4-4 4" stroke="currentColor"
-                  strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path
+                  d="M2.5 6.5h8M6.5 2.5l4 4-4 4"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </Link>
           </div>
@@ -190,15 +471,18 @@ export default function CatalogPage() {
   const [active, setActive] = useState("Semua");
   const [openId, setOpenId] = useState<number | null>(null);
 
-  const filtered = active === "Semua"
-    ? services
-    : services.filter((s) => s.category === active);
+  const filtered =
+    active === "Semua"
+      ? services
+      : services.filter((s) => s.category === active);
 
   const catCount = Object.fromEntries(
     allCategories.map((c) => [
       c,
-      c === "Semua" ? services.length : services.filter((s) => s.category === c).length,
-    ])
+      c === "Semua"
+        ? services.length
+        : services.filter((s) => s.category === c).length,
+    ]),
   );
 
   function handleFilter(cat: string) {
@@ -497,24 +781,30 @@ export default function CatalogPage() {
 
       <section className="catalog section" id="catalog">
         <div className="container">
-
           {/* ── Header ─────────────────────────────────────── */}
           <div className="catalog__header animate-fadeUp">
             <p className="section-label">Katalog Lengkap</p>
             <h2 className="section-title">
-              30 Layanan Analisis<br />
+              30 Layanan Analisis
+              <br />
               <em>Siap Dikerjakan</em>
             </h2>
             <p className="catalog__sub">
-              Klik pada layanan untuk melihat deskripsi lengkap dan software yang digunakan.
-              Konsultasi awal <strong>gratis</strong> untuk menentukan metode terbaik.
+              Klik pada layanan untuk melihat deskripsi lengkap dan software
+              yang digunakan. Konsultasi awal <strong>gratis</strong> untuk
+              menentukan metode terbaik.
             </p>
           </div>
 
           {/* ── Stats ──────────────────────────────────────── */}
           <div className="cl-stats animate-fadeUp delay-1">
             {stats.map((s) => (
-              <StatCard key={s.label} num={s.num} label={s.label} icon={s.icon} />
+              <StatCard
+                key={s.label}
+                num={s.num}
+                label={s.label}
+                icon={s.icon}
+              />
             ))}
           </div>
 
@@ -551,18 +841,29 @@ export default function CatalogPage() {
             <div className="cl-cta__left">
               <p className="cl-cta__eyebrow">Tidak ada yang cocok?</p>
               <h3 className="cl-cta__title">
-                Ceritakan kebutuhan<br />penelitian Anda
+                Ceritakan kebutuhan
+                <br />
+                penelitian Anda
               </h3>
               <p className="cl-cta__sub">
-                Tim kami siap merancang solusi analisis yang sesuai — mulai dari konsultasi metode hingga pelaporan akhir.
+                Tim kami siap merancang solusi analisis yang sesuai. Mulai dari
+                konsultasi metode hingga pelaporan akhir.
               </p>
             </div>
             <div className="cl-cta__actions">
               <Link href="/contact" className="cl-cta__btn-primary">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M2 4.5A1.5 1.5 0 013.5 3h9A1.5 1.5 0 0114 4.5v7A1.5 1.5 0 0112.5 13h-9A1.5 1.5 0 012 11.5v-7z"
-                    stroke="var(--navy)" strokeWidth="1.3"/>
-                  <path d="M2 5l6 4 6-4" stroke="var(--navy)" strokeWidth="1.3" strokeLinecap="round"/>
+                  <path
+                    d="M2 4.5A1.5 1.5 0 013.5 3h9A1.5 1.5 0 0114 4.5v7A1.5 1.5 0 0112.5 13h-9A1.5 1.5 0 012 11.5v-7z"
+                    stroke="var(--navy)"
+                    strokeWidth="1.3"
+                  />
+                  <path
+                    d="M2 5l6 4 6-4"
+                    stroke="var(--navy)"
+                    strokeWidth="1.3"
+                    strokeLinecap="round"
+                  />
                 </svg>
                 Konsultasi Sekarang
               </Link>
@@ -573,16 +874,23 @@ export default function CatalogPage() {
                 className="cl-cta__btn-ghost"
               >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M13.5 2.5A7 7 0 002.1 11.3L1 15l3.8-1A7 7 0 1013.5 2.5z"
-                    stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/>
-                  <path d="M6 6.5c.2.5.6 1.3 1.2 1.8.6.6 1.4 1 1.8 1.2.1 0 .2 0 .3-.1l.8-.8c.1-.1.3-.1.4 0l1.5 1c.1.1.1.3 0 .4-.4.6-1.1 1.2-1.9 1.1C8 11 5 8 4.9 6.3c0-.8.5-1.5 1.1-1.9.1-.1.3-.1.4 0l1 1.5c.1.1.1.3 0 .4l-.4.2z"
-                    stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+                  <path
+                    d="M13.5 2.5A7 7 0 002.1 11.3L1 15l3.8-1A7 7 0 1013.5 2.5z"
+                    stroke="currentColor"
+                    strokeWidth="1.3"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M6 6.5c.2.5.6 1.3 1.2 1.8.6.6 1.4 1 1.8 1.2.1 0 .2 0 .3-.1l.8-.8c.1-.1.3-.1.4 0l1.5 1c.1.1.1.3 0 .4-.4.6-1.1 1.2-1.9 1.1C8 11 5 8 4.9 6.3c0-.8.5-1.5 1.1-1.9.1-.1.3-.1.4 0l1 1.5c.1.1.1.3 0 .4l-.4.2z"
+                    stroke="currentColor"
+                    strokeWidth="1.2"
+                    strokeLinecap="round"
+                  />
                 </svg>
                 Chat WhatsApp
               </a>
             </div>
           </div>
-
         </div>
       </section>
     </>
