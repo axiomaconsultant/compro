@@ -16,11 +16,11 @@ export default function Contact() {
 
             <p className="contact__desc">
               Ceritakan kebutuhan penelitian Anda dan tim ahli kami siap membantu
-              menentukan metode analisis terbaik — tanpa biaya konsultasi awal.
+              menentukan metode analisis terbaik tanpa biaya konsultasi awal.
             </p>
 
             <div className="contact__btns">
-              <a href="https://wa.me/628xxxxxxxxx" className="contact__btn contact__btn--primary">
+              <a href="https://wa.me/62881026369090" className="contact__btn contact__btn--primary">
                 <svg width="15" height="15" viewBox="0 0 18 18" fill="none">
                   <path d="M15.5 12.5c0 .34-.08.67-.23.97-.15.3-.37.57-.64.78-.45.4-1.03.62-1.63.64H4.17L1.5 16.5V3.5c0-.69.56-1.25 1.25-1.25h10.5c.69 0 1.25.56 1.25 1.25v9z"
                     stroke="#fff" strokeWidth="1.5" strokeLinejoin="round" />
@@ -52,8 +52,8 @@ export default function Contact() {
                   Respon cepat
                 </div>
                 <div className="contact__card-label">WhatsApp</div>
-                <a href="https://wa.me/628xxxxxxxxx" className="contact__card-val">
-                  +62 8xx-xxxx-xxxx
+                <a href="https://wa.me/62881026369090" className="contact__card-val">
+                  +62 881-0263-69090
                 </a>
               </div>
               <svg className="contact__card-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none">

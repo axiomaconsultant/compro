@@ -11,6 +11,51 @@ const SOFTWARE = ["SPSS","SmartPLS","AMOS","R","Stata","Python","NVivo","Tableau
 
 const BAR_HEIGHTS = [40, 60, 45, 80, 55, 100];
 
+const TESTIMONIALS = [
+  {
+    initials: "RA",
+    // name: "Rizky A.",
+    role: "Mahasiswa S2 · Malang",
+    stars: 5,
+    text: "Cepet banget prosesnya! File sudah dikirim lengkap untuk semua variabel. Analisis langsung bisa dipakai untuk bimbingan. Siap support sampai lulus!",
+  },
+  {
+    initials: "DN",
+    // name: "Dewi N.",
+    role: "Mahasiswa S3 · Surabaya",
+    stars: 5,
+    text: "Amanah dan profesional. Kuesioner dijaga kerahasiaannya, tidak disebarkan ke siapapun. Analisis hanya bersama promotor sesuai etika penelitian.",
+  },
+  {
+    initials: "FH",
+    // name: "Farid H.",
+    role: "Mahasiswa S1 · Malang",
+    stars: 5,
+    text: "Tim sampai lembur malam demi menyelesaikan file dan dikirim tepat jam 7 pagi. Komitmennya luar biasa. Overall good banget, mantap!",
+  },
+  {
+    initials: "SA",
+    // name: "Siti A.",
+    role: "Peneliti · Surabaya",
+    stars: 5,
+    text: "Dikirim via email, ada 20-an jurnal (10 lama, 10 baru) lengkap dengan model dll. Sangat membantu untuk kebutuhan referensi penelitian saya.",
+  },
+  {
+    initials: "MY",
+    // name: "Maya Y.",
+    role: "Mahasiswa S2 · Jember",
+    stars: 5,
+    text: "Sudah bimbingan dan hasilnya keren banget! Siap support sampai lulus, itu yang bikin tenang. Terima kasih banyak atas bantuannya.",
+  },
+  {
+    initials: "LR",
+    // name: "Linda R.",
+    role: "Mahasiswa S1 · Kediri",
+    stars: 5,
+    text: "Tabel hasil analisis dibuatkan ulang dengan rapi dan mudah dipahami. Penjelasannya jelas, komunikasinya enak, dan selalu responsif.",
+  },
+];
+
 export default function Hero() {
   return (
     <section className="hero" id="hero">
@@ -62,44 +107,27 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ── RIGHT ── */}
-        <div className="hero__right animate-fadeUp delay-3">
-          {/* Chart Card */}
-          <div className="hero__chart-card">
-            <p className="hero__chart-label">Tingkat Kepuasan Klien</p>
-            <div className="hero__bars">
-              {BAR_HEIGHTS.map((h, i) => (
-                <div key={i} className="hero__bar-wrap">
-                  <div
-                    className={`hero__bar-fill${i === 3 || i === 5 ? " hero__bar-fill--accent" : ""}`}
-                    style={{ height: `${h}%`, animationDelay: `${i * 0.12}s` }}
-                  />
-                </div>
-              ))}
+       {/* ── RIGHT ── */}
+<div className="hero__right animate-fadeUp delay-3">
+  <p className="hero__chart-label">Apa Kata Klien Kami</p>
+  <div className="hero__testi-track-wrap">
+    <div className="hero__testi-track">
+      {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
+        <div key={i} className="hero__testi-card">
+          <div className="hero__testi-stars">{"★".repeat(t.stars)}{"☆".repeat(5 - t.stars)}</div>
+          <p className="hero__testi-text">"{t.text}"</p>
+          <div className="hero__testi-footer">
+            <div className="hero__testi-avatar">{t.initials}</div>
+            <div>
+              {/* <span className="hero__testi-name">{t.name}</span> */}
+              <span className="hero__testi-role">{t.role}</span>
             </div>
-            <div className="hero__chart-line">
-              <svg viewBox="0 0 340 50" width="100%" height="50">
-                <polyline
-                  points="0,45 56,36 112,40 168,20 224,28 280,10 340,5"
-                  fill="none" stroke="var(--electric)" strokeWidth="1.5"
-                  strokeLinecap="round" strokeLinejoin="round"
-                  className="chart-line-path"
-                />
-                <circle cx="340" cy="5" r="3" fill="var(--blue-300)" />
-              </svg>
-            </div>
-          </div>
-
-          {/* Stats Grid */}
-          <div className="hero__stats-grid">
-            {stats.map((s, i) => (
-              <div key={i} className="hero__stat">
-                <span className="hero__stat-value">{s.value}</span>
-                <span className="hero__stat-label">{s.label}</span>
-              </div>
-            ))}
           </div>
         </div>
+      ))}
+    </div>
+  </div>
+</div>
       </div>
     </section>
   );

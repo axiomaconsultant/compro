@@ -2,23 +2,9 @@ const pillars = [
   {
     icon: (
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <path
-          d="M11 2L13.5 8.5H20L14.5 12.5L16.5 19L11 15L5.5 19L7.5 12.5L2 8.5H8.5L11 2Z"
-          stroke="var(--electric)"
-          strokeWidth="1.4"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
-    title: "Akurat & Terstandar",
-    desc: "Metodologi statistik sesuai standar akademik internasional dengan dokumentasi lengkap.",
-  },
-  {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
         <circle cx="11" cy="11" r="9" stroke="var(--electric)" strokeWidth="1.4" />
         <path
-          d="M8 11l2 2 4-4"
+          d="M7 11l2.5 2.5L15 8"
           stroke="var(--electric)"
           strokeWidth="1.4"
           strokeLinecap="round"
@@ -26,26 +12,48 @@ const pillars = [
         />
       </svg>
     ),
-    title: "Konsultasi Inklusif",
-    desc: "Diskusi hasil dan interpretasi data sudah termasuk dalam setiap paket layanan.",
+    title: "Pengerjaan Cepat & Tepat Waktu",
+    desc: "File dikirim sesuai deadline, bahkan tim siap lembur malam demi memastikan hasil sampai ke tangan Anda tepat waktu.",
   },
   {
     icon: (
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
         <rect x="3" y="3" width="16" height="16" rx="3" stroke="var(--electric)" strokeWidth="1.4" />
         <path
-          d="M7 11h8M7 7h8M7 15h5"
+          d="M7 8h5M7 11h8M7 14h4"
           stroke="var(--electric)"
           strokeWidth="1.4"
           strokeLinecap="round"
         />
+        <circle cx="16" cy="7" r="2.5" fill="var(--electric)" opacity="0.15" stroke="var(--electric)" strokeWidth="1.2" />
+        <path d="M15.2 7l.6.6 1.2-1.2" stroke="var(--electric)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: "Deliverables Lengkap",
-    desc: "Output, laporan naratif, dan file kerja tersedia untuk setiap layanan yang dipesan.",
+    title: "Hasil Lengkap & Terstruktur",
+    desc: "Output mencakup semua variabel, laporan naratif, tabel analisis yang rapi, dan referensi jurnal siap pakai.",
+  },
+  {
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <path
+          d="M11 3C7 3 4 6 4 10c0 2.5 1.2 4.7 3 6.1V19l2.5-1.5L11 19l1.5-1.5L15 19v-2.9c1.8-1.4 3-3.6 3-6.1 0-4-3-7-7-7Z"
+          stroke="var(--electric)"
+          strokeWidth="1.4"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M8.5 10.5l1.5 1.5 3-3"
+          stroke="var(--electric)"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+    title: "Data & Privasi Terjaga",
+    desc: "Kuesioner dan data penelitian dijaga kerahasiaannya — tidak disebarkan ke pihak lain, hanya dianalisis bersama promotor.",
   },
 ];
-
 export default function About() {
   return (
     <section className="about section" id="about">
